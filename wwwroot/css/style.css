@@ -1,0 +1,258 @@
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #f0f0f0;
+  --panel-bg:     #fafafa;
+  --titlebar-bg:  linear-gradient(to bottom, #f8f8f8, #e5e5e5);
+  --border:       #adadad;
+  --sep:          #d4d0c8;
+  --accent:       #0078d7;
+  --mute-red:     #c0392b;
+  --label:        #444;
+  --track-bg:     #c8c8c8;
+  --thumb-brd:    #7a7a7a;
+  --hover-bg:     #dde9f5;
+  --font:         'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --section-lbl:  #6a6a6a;
+}
+
+body {
+  font-family: var(--font);
+  background: #4a4a5a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1' fill='rgba(255,255,255,.05)'/%3E%3C/svg%3E");
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── Window ── */
+#app {
+  width: 520px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  box-shadow: 3px 3px 18px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.55);
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+
+/* ── Title Bar ── */
+.titlebar {
+  background: var(--titlebar-bg);
+  height: 30px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4px 0 8px;
+  border-bottom: 1px solid var(--sep);
+  cursor: default;
+  flex-shrink: 0;
+}
+.titlebar-left { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #1a1a1a; }
+.tb-icon { width: 16px; height: 16px; flex-shrink: 0; }
+.titlebar-btns { display: flex; gap: 1px; }
+.tb-btn {
+  width: 27px; height: 22px;
+  background: none; border: none; cursor: pointer;
+  font-size: 11px; color: #333;
+  border-radius: 1px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .1s;
+}
+.tb-btn:hover { background: #d4e8f7; }
+.tb-close:hover { background: #e81123; color: #fff; }
+
+/* ── Toolbar ── */
+.toolbar {
+  background: linear-gradient(to bottom, #f2f2f2, #e8e8e8);
+  border-bottom: 1px solid var(--sep);
+  padding: 5px 10px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.toolbar-device { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: #333; }
+.toolbar-refresh {
+  font-size: 11px; background: none; border: 1px solid #b8b8b8;
+  padding: 2px 8px; cursor: pointer; border-radius: 2px; color: #333;
+  transition: background .1s;
+}
+.toolbar-refresh:hover { background: var(--hover-bg); }
+
+/* ── Mixer Panel ── */
+.mixer-panel {
+  background: var(--panel-bg);
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.mixer-scroll {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 260px;
+  padding: 10px 8px 8px;
+  gap: 0;
+}
+
+/* ── Section ── */
+.section { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.section-label {
+  font-size: 10.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--section-lbl);
+  padding-left: 6px;
+}
+.channels-row {
+  display: flex; flex-direction: row;
+  align-items: flex-end;
+  gap: 2px;
+  min-height: 220px;
+}
+
+/* ── Panel Divider ── */
+.panel-divider {
+  width: 1px; background: var(--sep);
+  align-self: stretch; margin: 0 10px;
+  flex-shrink: 0;
+}
+
+/* ── Channel ── */
+.channel {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 5px;
+  padding: 6px 5px 5px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  width: 62px; min-width: 62px;
+  cursor: default;
+  transition: background .12s, border-color .12s;
+  position: relative;
+}
+.channel:hover { background: var(--hover-bg); border-color: #aacde8; }
+.channel.is-device { width: 68px; min-width: 68px; }
+.channel.is-muted { opacity: .65; }
+.channel.is-active::after {
+  content: '';
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px; background: var(--accent); border-radius: 50%;
+}
+
+/* ── Channel icon ── */
+.ch-icon { width: 32px; height: 32px; flex-shrink: 0; }
+.ch-icon svg, .ch-icon img { width: 32px; height: 32px; }
+
+/* ── Volume number ── */
+.ch-volnum {
+  font-size: 11px; color: var(--label);
+  font-variant-numeric: tabular-nums;
+  min-width: 26px; text-align: center;
+}
+
+/* ── Slider ── */
+.ch-slider-wrap {
+  display: flex; align-items: center;
+  width: 100%; height: 155px;
+  justify-content: center;
+  position: relative;
+}
+
+/* Tick marks */
+.ch-ticks {
+  position: absolute; right: 4px; top: 8px;
+  height: 138px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  pointer-events: none;
+}
+.ch-tick { width: 4px; height: 1px; background: #c0c0c0; }
+.ch-tick.major { width: 6px; background: #999; }
+
+.ch-slider {
+  -webkit-appearance: none; appearance: none;
+  writing-mode: vertical-lr; direction: rtl;
+  width: 20px; height: 135px;
+  background: transparent; outline: none; cursor: pointer;
+}
+
+/* ─ Track ─ */
+.ch-slider::-webkit-slider-runnable-track {
+  width: 4px; background: var(--track-bg);
+  border: 1px solid #9a9a9a; border-radius: 2px;
+}
+.ch-slider::-moz-range-track {
+  width: 4px; height: 135px;
+  background: var(--track-bg); border: 1px solid #9a9a9a; border-radius: 2px;
+}
+
+/* ─ Thumb ─ */
+.ch-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  background: #fff; border: 2px solid var(--thumb-brd);
+  border-radius: 50%; margin-left: -5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.28);
+  transition: border-color .1s, box-shadow .1s;
+}
+.ch-slider:hover::-webkit-slider-thumb {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0,120,215,.15);
+}
+.ch-slider:active::-webkit-slider-thumb {
+  background: #d8edf9; border-color: var(--accent);
+}
+.ch-slider::-moz-range-thumb {
+  width: 11px; height: 11px;
+  background: #fff; border: 2px solid var(--thumb-brd);
+  border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,.28);
+}
+
+/* ── Mute button ── */
+.ch-mute {
+  background: none; border: none; cursor: pointer;
+  padding: 2px; border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .1s;
+}
+.ch-mute:hover { background: rgba(0,0,0,.08); }
+.ch-mute svg { width: 22px; height: 22px; }
+
+/* ── Channel label ── */
+.ch-label {
+  font-size: 10px; color: #333;
+  text-align: center; max-width: 58px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* ── Loading / Empty ── */
+.loading-msg {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12px; color: #888;
+  padding: 12px 8px;
+}
+.spinner {
+  width: 14px; height: 14px;
+  border: 2px solid #ccc; border-top-color: var(--accent);
+  border-radius: 50%; animation: spin .65s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.empty-msg {
+  font-size: 11px; color: #aaa; padding: 16px 8px; text-align: center;
+}
+
+/* ── Status bar ── */
+.statusbar {
+  background: linear-gradient(to bottom, #e2e2e2, #d6d6d6);
+  border-top: 1px solid var(--sep);
+  padding: 4px 10px;
+  font-size: 10.5px; color: #555;
+  flex-shrink: 0;
+}
+
+/* ── Smooth channel enter/exit ── */
+.channel {
+  transition: opacity .35s, transform .35s, background .12s, border-color .12s;
+}
+
+/* ── Slider value transition (JS-driven, not CSS, but thumb gets smooth feel) ── */
+.ch-slider::-webkit-slider-thumb {
+  transition: border-color .1s, box-shadow .1s, top .3s;
+}
