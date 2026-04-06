@@ -7,7 +7,7 @@ through **NAudio**.
 
 ---
 
-[![Screenshot](https://raw.githubusercontent.com/cumulus13/sndvolweb/master/screenshot.png)](https://raw.githubusercontent.com/cumulus13/sndvolweb/master/screenshot.png)
+[![Screenshot](https://raw.githubusercontent.com/cumulus13/sndvolweb/master/screenshoot.png)](https://raw.githubusercontent.com/cumulus13/sndvolweb/master/screenshoot.png)
 
 --
 
