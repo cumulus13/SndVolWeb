@@ -1,3 +1,9 @@
+// File: Program.cs
+// Author: Hadi Cahyadi <cumulus13@gmail.com>
+// Date: 2026-04-06
+// Description: 
+// License: MIT
+
 using SndVolWeb;
 
 var builder = WebApplication.CreateBuilder(args);

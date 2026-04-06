@@ -1,3 +1,9 @@
+// File: WindowsAudioService.cs
+// Author: Hadi Cahyadi <cumulus13@gmail.com>
+// Date: 2026-04-06
+// Description: 
+// License: MIT
+
 using NAudio.CoreAudioApi;
 using NAudio.CoreAudioApi.Interfaces;
 using System.Diagnostics;
