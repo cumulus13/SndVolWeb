@@ -9,7 +9,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     
     <UseWindowsForms>false</UseWindowsForms>
-  <Version>1.0.2</Version></PropertyGroup>
+  <Version>1.0.3</Version></PropertyGroup>
 
   <ItemGroup>
     
