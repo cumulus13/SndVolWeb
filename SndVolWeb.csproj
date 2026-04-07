@@ -9,9 +9,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     
     <UseWindowsForms>false</UseWindowsForms>
-    <Version>1.0.5</Version></PropertyGroup>
+    <Version>1.0.6</Version></PropertyGroup>
 
-    <AssemblyName>SndVolWeb</AssemblyName>
     <Authors>Hadi Cahyadi</Authors>
     <Company>cumulus13</Company>
     <Product>System Volume Control On Web</Product>
