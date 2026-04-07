@@ -9,9 +9,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     
     <UseWindowsForms>false</UseWindowsForms>
-    <Version>1.0.4</Version></PropertyGroup>
+    <Version>1.0.5</Version></PropertyGroup>
 
-    <ApplicationIcon>app.ico</ApplicationIcon>
     <AssemblyName>SndVolWeb</AssemblyName>
     <Authors>Hadi Cahyadi</Authors>
     <Company>cumulus13</Company>
