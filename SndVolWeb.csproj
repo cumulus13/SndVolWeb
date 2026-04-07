@@ -8,17 +8,17 @@
     <RootNamespace>SndVolWeb</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <UseWindowsForms>false</UseWindowsForms>
-    <Version>1.0.6</Version></PropertyGroup>
+
+    <Version>1.0.8</Version>
     <AssemblyName>SndVolWeb</AssemblyName>
     <Authors>Hadi Cahyadi</Authors>
     <Company>cumulus13</Company>
     <Product>System Volume Control On Web</Product>
-    <Description>A web-based replica of **sndvol.exe** that controls **REAL Windows audio** — your actual speakers and every running app's audio session (Chrome, Spotify, Discord, VLC, etc.) — using the Windows Core Audio (WASAPI/MMDevice) API through **NAudio**.</Description>
+    <Description>A web-based replica of sndvol.exe that controls REAL Windows audio — your actual speakers and every running app's audio session (Chrome, Spotify, Discord, VLC, etc.) — using the Windows Core Audio (WASAPI/MMDevice) API through NAudio.</Description>
     <Copyright>Copyright © 2026</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
-    
     <PackageReference Include="NAudio" Version="2.2.1" />
     <PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
   </ItemGroup>
